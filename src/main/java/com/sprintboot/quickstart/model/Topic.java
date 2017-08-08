@@ -41,4 +41,14 @@ public class Topic {
     public void setDesc(String desc) {
         this.desc = desc;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((Topic) obj).getId().equals(id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

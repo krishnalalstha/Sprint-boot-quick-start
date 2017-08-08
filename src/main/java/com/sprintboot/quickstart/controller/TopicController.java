@@ -1,10 +1,10 @@
 package com.sprintboot.quickstart.controller;
 
 import com.sprintboot.quickstart.model.Topic;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.sprintboot.quickstart.service.TopicService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -12,11 +12,31 @@ import java.util.List;
  */
 @RestController
 public class TopicController {
+    @Autowired
+    private TopicService topicService;
+
     @RequestMapping("/topics")
     public List<Topic> getAllTopics() {
-        return Arrays.asList(
-                new Topic("1", "Spring Framework", "Spring framework desc"),
-                new Topic("2", "Core Java", "Core java Description")
-        );
+        return topicService.getAllTopics();
+    }
+
+    @RequestMapping("/topics/{id}")
+    public Topic getTopic(@PathVariable("id") String id) {
+        return topicService.getTopicById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/topics")
+    public void addTopic(@RequestBody Topic topic) {
+        topicService.addTopic(topic);
+
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/topics/{id}")
+    public void updateTopic(@RequestBody Topic topic, @PathVariable String id) {
+        topicService.updateTopic(topic, id);
+    }
+    @RequestMapping(method = RequestMethod.DELETE,value = "/topics/{id}")
+    public void deleteTopic(@PathVariable String id){
+        topicService.deleteTopic(id);
     }
 }
