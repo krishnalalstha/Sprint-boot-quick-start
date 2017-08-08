@@ -50,10 +50,8 @@ public class TopicService {
     public void deleteTopic(String id) {
         int pos = -1;
         for (int i = 0; i < topics.size(); i++) {
-
             if (topics.get(i).getId().equals(id)) {
                 pos = i;
-
             }
 
         }
