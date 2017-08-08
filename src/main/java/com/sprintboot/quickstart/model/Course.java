@@ -2,25 +2,29 @@ package com.sprintboot.quickstart.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  * Created by krishna on 8/8/17.
  */
 @Entity
-public class Topic {
+public class Course {
     @Id
     String id;
     String name;
     String description;
+    @ManyToOne
+    Topic topic;
 
-    public Topic() {
+    public Course() {
 
     }
 
-    public Topic(String id, String name, String description) {
+    public Course(String id, String name, String description, String topicId) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.topic = new Topic(topicId, "", "");
     }
 
     public String getId() {
@@ -49,11 +53,19 @@ public class Topic {
 
     @Override
     public boolean equals(Object obj) {
-        return ((Topic) obj).getId().equals(id);
+        return ((Course) obj).getId().equals(id);
     }
 
     @Override
     public int hashCode() {
         return id.hashCode();
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 }
