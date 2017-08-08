@@ -1,4 +1,4 @@
 # SprintBootQuickStart
-Setup maven projec.
-Setup SpringBoot Framework
-Shows How to create simple Rest-API using SpringBoot Framework
+<li>Setup maven project.</li>
+<li>Setup SpringBoot Framework</li>
+<li>Shows How to create simple Rest-API using SpringBoot Framework.</li>
