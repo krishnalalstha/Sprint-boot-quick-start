@@ -18,9 +18,7 @@ public class CourseService {
 
     public List<Course> getAllCourses(String id) {
         List<Course> courses = new ArrayList<>();
-        for (Course course : courseRepository.findAll()) {
-            courses.add(course);
-        }
+        courses.addAll(courseRepository.findByTopicId(id));
         return courses;
     }
 
@@ -33,10 +31,10 @@ public class CourseService {
     }
 
     public void updateCourse(Course course) {
-       courseRepository.save(course);
+        courseRepository.save(course);
     }
 
     public void deleteCourse(String id) {
-       courseRepository.delete(id);
+        courseRepository.delete(id);
     }
 }
